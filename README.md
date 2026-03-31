@@ -77,7 +77,36 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+- di sini, tidak perlu menggunakan interface (trait) untuk Subscriber karena implementasinya masih sederhana dan hanya memiliki satu tipe Subscriber. Menggunakan struct saja sudah cukup untuk memenuhi kebutuhan saat ini.
+- lebih baik menggunakan karena
+    - Vec (list):
+        - pencarian berdasarkan id/url, jadi O(n) 
+        - tidak menjamin keunikan data secara langsung
+
+    - DashMap:
+        - pencarian dengan akses O(1) 
+        - mendukung thread-safe concurrent access
+        - lebih cocok untuk kasus multi-thread seperti notifikasi
+- walaupun menggunakan Singleton pattern, itu tidak menggantikan kebutuhan akan thread-safe data structure.
+    Singleton => hanya memastikan satu instance
+    DashMap => memastikan akses aman antar thread
+  
 
 #### Reflection Publisher-2
+- dalam MVC , Model menangani data dan logic sekaligus. Namun, memisahkan menjadi Service dan Repository memberikan keuntungan:
+    - Separation of Concerns
+    - Maintainability lebih baik
+    - Testability lebih mudah
+    - Single Responsibility Principle (SRP)
+    
+- Jika hanya menggunakan Model:
+    -  logic  akan bercampur
+    - struktur kode jadi lebih kompleks dan sulit dirawat
+    - perubahan kecil bisa berdampak besar ke seluruh sistem
+
+-
+
 
 #### Reflection Publisher-3
+- di tutorial menggunakan push model
+- jika menggunakan Pull Model:
